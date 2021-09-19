@@ -15,11 +15,20 @@ class _HomeScreenState extends State<HomeScreen> {
   late DatabaseHelper databaseHelper;
   Future<List<TodoItem>>? entries;
 
+  final _formKey = GlobalKey<FormState>();
+  final newItemController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     databaseHelper = DatabaseHelper();
     getEntries();
+  }
+
+  @override
+  void dispose() {
+    newItemController.dispose();
+    super.dispose();
   }
 
   getEntries() {
@@ -53,15 +62,16 @@ class _HomeScreenState extends State<HomeScreen> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return CupertinoAlertDialog(
+                  return AlertDialog(
                     title: Text(
                       'New Item',
                       textAlign: TextAlign.center,
                     ),
                     content: SizedBox(
-                      height: 100,
+                      height: 180,
                       width: 100,
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
@@ -70,21 +80,46 @@ class _HomeScreenState extends State<HomeScreen> {
                               autofocus: true,
                               keyboardType: TextInputType.multiline,
                               maxLines: 4,
+                              controller: newItemController,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text or Cancel';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                  child: Text('Cancel'),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                                ElevatedButton(
+                                  child: Text('Submit'),
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      databaseHelper.addItem(
+                                        TodoItem(
+                                            id: 0,
+                                            title: newItemController.text,
+                                            subTitle: '',
+                                            isDone: false),
+                                      );
+                                      getEntries();
+                                      return Navigator.pop(context);
+                                    }
+                                  },
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
                     ),
-                    actions: [
-                      CupertinoDialogAction(
-                        child: Text('cancel'),
-                        onPressed: () {},
-                      ),
-                      CupertinoDialogAction(
-                        child: Text('submit'),
-                        onPressed: () {},
-                      ),
-                    ],
                   );
                 });
             // databaseHelper.addItem(
