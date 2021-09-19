@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:timmy_todo/database_helper.dart';
-import 'package:timmy_todo/todo_item_model.dart';
+import 'package:to_done/database_helper.dart';
+import 'package:to_done/todo_item_model.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key, required this.title}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:timmy_todo/todo_item_model.dart';
+import 'package:to_done/todo_item_model.dart';
 
 class DatabaseHelper {
   static Database? _db;
