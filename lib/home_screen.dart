@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF0F0F0),
       appBar: AppBar(
         title: Text(
           'To Do',
@@ -57,7 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
           preferredSize: Size.fromHeight(0),
         ),
       ),
-      backgroundColor: Color(0xFFF0F0F0),
       body: Center(
         child: FutureBuilder(
           future: entries,
