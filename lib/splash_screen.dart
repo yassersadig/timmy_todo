@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -31,7 +32,13 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/icon/app_icon.png', height: 128, width: 128),
-            // SizedBox(height: 32),
+            SizedBox(
+              height: 24,
+            ),
+            Text(
+              'Welcome back, Baby!',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
             Padding(
               padding: EdgeInsets.all(32.0),
               child: quote == ''
@@ -43,14 +50,14 @@ class _SplashScreenState extends State<SplashScreen> {
                       children: [
                         Text(
                           '"$quote"',
-                          style: TextStyle(color: Colors.black, fontSize: 20),
+                          style: TextStyle(color: Colors.black, fontSize: 16),
                           textAlign: TextAlign.center,
                         ),
                         Text(
                           quoteAuthor,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 16,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
@@ -60,6 +67,12 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: Padding(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 8),
+          child: Text(
+            'Copyright © 2021 Baby\'s App',
+            textAlign: TextAlign.center,
+          )),
     );
   }
 
@@ -73,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
             jsonDecode(response.body)['contents']['quotes'][0]['author'];
       });
 
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 5));
       navigateToHome();
     } else
       navigateToHome();
