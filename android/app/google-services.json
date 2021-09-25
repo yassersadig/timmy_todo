@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "300898031265",
+    "project_id": "done-455da",
+    "storage_bucket": "done-455da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300898031265:android:78ad80cb77eefb2f1b42e0",
+        "android_client_info": {
+          "package_name": "com.yasseralbalola.to_done"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300898031265-c9f4sal4ttvo7tjusdqfu02ri28a78bf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBSckx8hwTQyUmFrefQekivVLCokoI4y4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300898031265-c9f4sal4ttvo7tjusdqfu02ri28a78bf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

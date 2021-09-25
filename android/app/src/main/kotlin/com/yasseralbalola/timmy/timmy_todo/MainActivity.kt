@@ -1,4 +1,4 @@
-package com.yasseralbalola.timmy.timmy_todo
+package com.yasseralbalola.to_done
 
 import io.flutter.embedding.android.FlutterActivity
 
